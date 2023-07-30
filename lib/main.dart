@@ -8,8 +8,16 @@ import 'package:flutter_1/task27Jul/teacher.dart';
 
 void main() {
   Coursera coursera = Coursera();
-  Teacher? teacher;
-  Course? course;
+  Teacher teacher = Teacher(
+    teacherName: '',
+    teacherEmail: '',
+    teacherPassword: '',
+    courses: [],
+  );
+  Course course = Course(
+    courseDescription: '',
+    courseName: '',
+  );
   String input;
   do {
     print('Choose Your Operation :');
@@ -25,19 +33,19 @@ void main() {
     switch (choose) {
       case 1:
         print('Enter The Teacher\'s Name : ');
-        String? name = stdin.readLineSync()!;
+        String name = stdin.readLineSync().toString();
         print('Enter The Teacher\'s Password : ');
-        String? password = stdin.readLineSync()!;
+        String password = stdin.readLineSync().toString();
         coursera.loginTeacher(name, password);
 
         break;
       case 2:
         print('Enter The Teacher\'s Name : ');
-        String? name = stdin.readLineSync()!;
+        String name = stdin.readLineSync().toString();
         print('Enter The Teacher\'s Email : ');
-        String? email = stdin.readLineSync()!;
+        String email = stdin.readLineSync().toString();
         print('Enter The Teacher\'s Password : ');
-        String? password = stdin.readLineSync()!;
+        String password = stdin.readLineSync().toString();
         coursera.registerTeacher(name, email, password);
         break;
       case 3:
@@ -47,7 +55,7 @@ void main() {
           print('Enter Description of Course :');
           String courseDescription = stdin.readLineSync().toString();
           print('The Course Has Been Added Successfully :) ');
-          teacher!.courses.add(Course(
+          teacher.courses.add(Course(
             courseDescription: courseDescription,
             courseName: courseName,
           ));
@@ -56,8 +64,8 @@ void main() {
       case 4:
         {
           print('Enter the Name Of The Course To delete : ');
-          String? name = stdin.readLineSync()!;
-          teacher!.deleteCourse(name);
+          String name = stdin.readLineSync().toString();
+          teacher.deleteCourse(name);
         }
         break;
       case 5:
@@ -69,7 +77,7 @@ void main() {
           print('Enter Description of Lecture :');
           String lectureDescription = stdin.readLineSync().toString();
           print('----------------------------');
-          course!.lectures.add(Lecture(
+          course.lectures.add(Lecture(
             lectureDescription: lectureDescription,
             lectureFilName: lectureFilName,
             lectureName: lectureName,
@@ -80,7 +88,7 @@ void main() {
         {
           print('Enter the Name Of The Sheet To delete : ');
           String name = stdin.readLineSync().toString();
-          course!.deleteLecture(name);
+          course.deleteLecture(name);
         }
         break;
       case 7:
@@ -92,7 +100,7 @@ void main() {
           print('Enter Description of Sheet :');
           String sheetDescription = stdin.readLineSync().toString();
           print('----------------------------');
-          course!.addSheet(Sheet(
+          course.addSheet(Sheet(
             sheetDescription: sheetDescription,
             sheetFileName: sheetFileName,
             sheetNumber: sheetNumber,
@@ -102,8 +110,8 @@ void main() {
       case 8:
         {
           print('Enter the Name Of The Sheet To delete : ');
-          String? name = stdin.readLineSync()!;
-          course!.deleteSheet(name);
+          String name = stdin.readLineSync().toString();
+          course.deleteSheet(name);
         }
         break;
       case 9:
@@ -113,26 +121,26 @@ void main() {
         break;
       case 10:
         {
-          teacher!.printListCourse();
+          teacher.printListCourse();
         }
         break;
       case 11:
         {
-          course!.printListLecture();
+          course.printListLecture();
         }
         break;
       case 12:
         {
-          course!.printListSheet();
+          course.printListSheet();
         }
         break;
 
       default:
-        print('invalid input !');
+        print('invalid input ');
         break;
     }
     print('------------------------------');
-    print('Do You want To Continue with The Program ? ( Yes / No ) ');
+    print('Do You want To Continue with The Program  ( Yes / No ) ');
     input = stdin.readLineSync().toString().toLowerCase();
   } while (input == 'y' || input == 'yes');
   print('Thanks :) ');
