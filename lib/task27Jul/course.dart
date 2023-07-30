@@ -1,45 +1,33 @@
-import 'dart:io';
-
 import 'lecture.dart';
 import 'sheet.dart';
 
 class Course {
-  String? courseName, courseDescription;
-  List<Lecture> listLecture = [];
-  List<Sheet> listSheet = [];
+  String courseName, courseDescription;
+  List<Lecture> lectures = [];
+  List<Sheet> sheets = [];
 
-  Course({String courseName = '', String courseDescription = ''}) {
-    this.courseName = courseName;
-    this.courseDescription = courseDescription;
-  }
-
+  Course({
+    required this.courseDescription,
+    required this.courseName,
+  });
   void printCourse() {
     print(' Name Course  : $courseName');
     print(' Description  : $courseDescription');
     print('-----------------------------');
   }
 
-  void setCourse() {
-    print('Enter Name Of Course :');
-    courseName = stdin.readLineSync()!;
-    print('Enter Description of Course :');
-    courseDescription = stdin.readLineSync()!;
-    print('The Course Has Been Added Successfully :) ');
-  }
-
   void addLecture(Lecture l1) {
-    l1.setLecture();
-    listLecture.add(l1);
+    lectures.add(l1);
     print('The Lecture Has Been Added Successfully :) ');
   }
 
   void deleteLecture(String name) {
-    if (listLecture.isEmpty) {
+    if (lectures.isEmpty) {
       print('There Are No Lectures !');
     } else {
-      for (int i = 0; i < listLecture.length; i++) {
-        if (listLecture[i].lectureName == name) {
-          listLecture.remove(listLecture[i]);
+      for (int i = 0; i < lectures.length; i++) {
+        if (lectures[i].lectureName == name) {
+          lectures.remove(lectures[i]);
           print('Deleted successfully ');
           print('------------------------------------');
         } else {
@@ -50,18 +38,17 @@ class Course {
   }
 
   void addSheet(Sheet sh1) {
-    sh1.setSheet();
-    listSheet.add(sh1);
+    sheets.add(sh1);
     print('The Sheet Has Been Added Successfully :) ');
   }
 
   void deleteSheet(String name) {
-    if (listSheet.isEmpty) {
+    if (sheets.isEmpty) {
       print('There Are No Sheet !');
     } else {
-      for (int i = 0; i < listSheet.length; i++) {
-        if (listSheet[i].sheetFileName == name) {
-          listSheet.remove(listSheet[i]);
+      for (int i = 0; i < sheets.length; i++) {
+        if (sheets[i].sheetFileName == name) {
+          sheets.remove(sheets[i]);
           print('Deleted successfully ');
           print('------------------------------------');
         } else {
@@ -72,23 +59,23 @@ class Course {
   }
 
   void printListLecture() {
-    if (listLecture.isEmpty) {
+    if (lectures.isEmpty) {
       print('There Are No Lectures !');
     } else {
-      for (int i = 0; i < listLecture.length; i++) {
-        print('------ Data of ${listLecture[i].lectureName} Lecture ------');
-        listLecture[i].printLecture();
+      for (int i = 0; i < lectures.length; i++) {
+        print('------ Data of ${lectures[i].lectureName} Lecture ------');
+        lectures[i].printLecture();
       }
     }
   }
 
   void printListSheet() {
-    if (listSheet.isEmpty) {
+    if (sheets.isEmpty) {
       print('There Are No Sheet !');
     } else {
-      for (int i = 0; i < listSheet.length; i++) {
-        print('------ Data of ${listSheet[i].sheetFileName} Sheet ------');
-        listSheet[i].printSheet();
+      for (int i = 0; i < sheets.length; i++) {
+        print('------ Data of ${sheets[i].sheetFileName} Sheet ------');
+        sheets[i].printSheet();
       }
     }
   }

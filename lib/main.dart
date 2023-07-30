@@ -7,19 +7,10 @@ import 'package:flutter_1/task27Jul/sheet.dart';
 import 'package:flutter_1/task27Jul/teacher.dart';
 
 void main() {
-  List<Sheet> sheet = [];
-  List<Lecture> lecture = [];
-  List<Course> course = [];
-  List<Teacher> teacher = [];
-  List<Coursera> coursera = [];
-
-  Sheet sh = Sheet();
-  Lecture l = Lecture();
-  Course c = Course();
-  Coursera courser = Coursera();
-  Teacher te = Teacher();
-  String? contiuoe;
-
+  Coursera coursera = Coursera();
+  Teacher? teacher;
+  Course? course;
+  String input;
   do {
     print('Choose Your Operation :');
     print(' 1) Login Teacher        7) Add New Sheet  ');
@@ -29,7 +20,7 @@ void main() {
     print(' 5) Add New Lecture     11) Show Lecture');
     print(' 6) Delete Lecture      12) Show Sheet  ');
 
-    int? choose = int.parse(stdin.readLineSync()!);
+    int choose = int.parse(stdin.readLineSync().toString());
     print('------------------------------');
     switch (choose) {
       case 1:
@@ -37,7 +28,7 @@ void main() {
         String? name = stdin.readLineSync()!;
         print('Enter The Teacher\'s Password : ');
         String? password = stdin.readLineSync()!;
-        courser.loginTeacher(name, password);
+        coursera.loginTeacher(name, password);
 
         break;
       case 2:
@@ -47,79 +38,102 @@ void main() {
         String? email = stdin.readLineSync()!;
         print('Enter The Teacher\'s Password : ');
         String? password = stdin.readLineSync()!;
-        courser.registerTeacher(name, email, password);
+        coursera.registerTeacher(name, email, password);
         break;
       case 3:
         {
-          c.setCourse();
-          te.listCourses.add(c);
+          print('Enter Name Of Course :');
+          String courseName = stdin.readLineSync().toString();
+          print('Enter Description of Course :');
+          String courseDescription = stdin.readLineSync().toString();
+          print('The Course Has Been Added Successfully :) ');
+          teacher!.courses.add(Course(
+            courseDescription: courseDescription,
+            courseName: courseName,
+          ));
         }
         break;
       case 4:
         {
           print('Enter the Name Of The Course To delete : ');
           String? name = stdin.readLineSync()!;
-          te.deleteCourse(name);
+          teacher!.deleteCourse(name);
         }
         break;
       case 5:
         {
-          c.addLecture(l);
-          lecture.add(l);
+          print('Enter Name Of Lecture :');
+          String lectureName = stdin.readLineSync().toString();
+          print('Enter File Name Of Lecture :');
+          String lectureFilName = stdin.readLineSync().toString();
+          print('Enter Description of Lecture :');
+          String lectureDescription = stdin.readLineSync().toString();
+          print('----------------------------');
+          course!.lectures.add(Lecture(
+            lectureDescription: lectureDescription,
+            lectureFilName: lectureFilName,
+            lectureName: lectureName,
+          ));
         }
         break;
       case 6:
         {
           print('Enter the Name Of The Sheet To delete : ');
-          String? name = stdin.readLineSync()!;
-          c.deleteLecture(name);
+          String name = stdin.readLineSync().toString();
+          course!.deleteLecture(name);
         }
         break;
       case 7:
         {
-          c.addSheet(sh);
-          sheet.add(sh);
+          print('Enter Name Of Sheet :');
+          String sheetFileName = stdin.readLineSync().toString();
+          print('Enter Number Of Sheet :');
+          int sheetNumber = int.parse(stdin.readLineSync().toString());
+          print('Enter Description of Sheet :');
+          String sheetDescription = stdin.readLineSync().toString();
+          print('----------------------------');
+          course!.addSheet(Sheet(
+            sheetDescription: sheetDescription,
+            sheetFileName: sheetFileName,
+            sheetNumber: sheetNumber,
+          ));
         }
         break;
       case 8:
         {
           print('Enter the Name Of The Sheet To delete : ');
           String? name = stdin.readLineSync()!;
-          c.deleteSheet(name);
+          course!.deleteSheet(name);
         }
         break;
       case 9:
         {
-          courser.printListTeacher();
+          coursera.printListTeacher();
         }
         break;
       case 10:
         {
-          te.printListCourse();
+          teacher!.printListCourse();
         }
         break;
       case 11:
         {
-          c.printListLecture();
+          course!.printListLecture();
         }
         break;
       case 12:
         {
-          c.printListSheet();
+          course!.printListSheet();
         }
         break;
 
       default:
-        print('invalid Choise !');
+        print('invalid input !');
         break;
     }
     print('------------------------------');
     print('Do You want To Continue with The Program ? ( Yes / No ) ');
-    contiuoe = stdin.readLineSync()!;
-  } while (contiuoe == 'y' ||
-      contiuoe == 'yes' ||
-      contiuoe == 'Yes' ||
-      contiuoe == 'Y ' ||
-      contiuoe == 'YES');
+    input = stdin.readLineSync().toString().toLowerCase();
+  } while (input == 'y' || input == 'yes');
   print('Thanks :) ');
 }

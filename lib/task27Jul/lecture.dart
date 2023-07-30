@@ -1,23 +1,17 @@
-import 'dart:io';
-
 class Lecture {
-  String? lectureName;
-  String? lectureFilName;
-  String? lectureDescription;
+  String lectureName;
+  String lectureFilName;
+  String lectureDescription;
+
+  Lecture({
+    required this.lectureDescription,
+    required this.lectureFilName,
+    required this.lectureName,
+  });
 
   void printLecture() {
     print(' Name Lecture : $lectureName');
     print(' File Name    : $lectureFilName');
     print(' Description  : $lectureDescription');
-  }
-
-  void setLecture() {
-    print('Enter Name Of Lecture :');
-    this.lectureName = stdin.readLineSync()!;
-    print('Enter File Name Of Lecture :');
-    this.lectureFilName = stdin.readLineSync()!;
-    print('Enter Description of Lecture :');
-    this.lectureDescription = stdin.readLineSync()!;
-    print('----------------------------');
   }
 }

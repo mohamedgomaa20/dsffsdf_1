@@ -1,44 +1,25 @@
 import 'course.dart';
 
 class Teacher {
-  String? teacherName;
-  String? teacherEmail;
-  String? teacherPassword;
-  List<Course> listCourses = [];
+  Teacher({
+    required this.teacherName,
+    required this.teacherEmail,
+    required this.teacherPassword,
+    required this.courses,
+  });
 
-  Teacher({String name = '', String email = '', String password = ''}) {
-    this.teacherName = name;
-    this.teacherEmail = email;
-    this.teacherPassword = password;
-  }
-  void addCourse(Course c) {
-    listCourses.add(c);
-  }
-
+  String teacherName;
+  String teacherEmail;
+  String teacherPassword;
+  List<Course> courses = [];
   void printListCourse() {
-    if (listCourses.isEmpty) {
+    if (courses.isEmpty) {
       print('There Are No Courses !');
     } else {
-      for (int i = 0; i < listCourses.length; i++) {
-        print('------ Data of ${listCourses[i].courseName} Course ------');
+      for (int i = 0; i < courses.length; i++) {
+        print('------ Data of ${courses[i].courseName} Course ------');
 
-        listCourses[i].printCourse();
-      }
-    }
-  }
-
-  void deleteCourse(String name) {
-    if (listCourses.isEmpty) {
-      print('There Are No Courses !');
-    } else {
-      for (int i = 0; i < listCourses.length; i++) {
-        if (listCourses[i].courseName == name) {
-          listCourses.remove(listCourses[i]);
-          print('Deleted successfully ');
-          print('-----------------------------');
-        } else {
-          print('There is No Course Of This Name !');
-        }
+        courses[i].printCourse();
       }
     }
   }
@@ -49,12 +30,32 @@ class Teacher {
     print(' Password : $teacherPassword');
   }
 
-  void showListCourse() {
-    if (listCourses.isEmpty) {
+  void addCourse(Course c) {
+    courses.add(c);
+  }
+
+  void deleteCourse(String name) {
+    if (courses.isEmpty) {
       print('There Are No Courses !');
     } else {
-      listCourses.forEach((element) {
-        print('------ Data of ${listCourses.indexOf(element)} Course ------');
+      for (int i = 0; i < courses.length; i++) {
+        if (courses[i].courseName == name) {
+          courses.remove(courses[i]);
+          print('Deleted successfully ');
+          print('-----------------------------');
+        } else {
+          print('There is No Course Of This Name !');
+        }
+      }
+    }
+  }
+
+  void showListCourse() {
+    if (courses.isEmpty) {
+      print('There Are No Courses !');
+    } else {
+      courses.forEach((element) {
+        print('------ Data of ${courses.indexOf(element)} Course ------');
         print(' Name Course  : ${element.courseName}');
         print(' Description  : ${element.courseDescription}');
         print('-----------------------------');
